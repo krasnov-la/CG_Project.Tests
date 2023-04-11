@@ -43,7 +43,7 @@ namespace CG_Project.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(DimensionExeption))]
+        [ExpectedException(typeof(DimensionException))]
         public void VectorProdNon3D()
         {
             Vector vector1 = new Vector(1, 6, 9, 4);
