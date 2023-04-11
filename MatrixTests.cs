@@ -367,7 +367,7 @@ namespace CG_Project.Tests
 
         [TestMethod]
 
-        public void RotationsNDTest()
+        public void RotationsNDTest1()
         {
             float angle = (30 % 360) * (float)Math.PI / 180;
             Matrix Rotate25 = new Matrix(new float[,] { { 1, 0, 0, 0, 0 },
@@ -379,6 +379,23 @@ namespace CG_Project.Tests
             Matrix res = Matrix.GeneralRotation(5, 1, 4, 30);
 
             MatrixAssert(Rotate25, res);
+        }
+
+        [TestMethod]
+
+        public void RotationsNDTest2()
+        {
+            float angle = (60 % 360) * (float)Math.PI / 180;
+            Matrix Rotate35 = new Matrix(new float[,] { { (float)Math.Cos(angle), 0, 0, 0, (float)Math.Sin(angle), 0},
+                                                        { 0, 1, 0, 0, 0, 0},
+                                                        { 0, 0, 1, 0, 0, 0},
+                                                        { 0, 0, 0, 1, 0, 0},
+                                                        { -(float)Math.Sin(angle), 0, 0, 0, (float)Math.Cos(angle), 0},
+                                                        { 0, 0, 0, 0, 0, 1}});
+
+            Matrix res = Matrix.GeneralRotation(6, 0, 4, 60);
+
+            MatrixAssert(Rotate35, res);
         }
     }
 }
