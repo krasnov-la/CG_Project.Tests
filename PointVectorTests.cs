@@ -1,8 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using CG_Project;
+﻿using CGProject;
+using CGProject.Math;
 
-namespace CG_Project.Tests
+namespace CGProject.Tests
 {
     [TestClass]
     public class PointVectorTests
@@ -43,7 +42,7 @@ namespace CG_Project.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(DimensionException))]
+        [ExpectedException(typeof(EngineExceptions.DimensionException))]
         public void VectorProdNon3D()
         {
             Vector vector1 = new Vector(1, 6, 9, 4);

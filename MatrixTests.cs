@@ -1,9 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Specialized;
-using CG_Project;
+﻿using CGProject;
+using CGProject.Math;
 
-namespace CG_Project.Tests
+namespace CGProject.Tests
 {
     [TestClass]
     public class MatrixTests
@@ -16,7 +14,7 @@ namespace CG_Project.Tests
             for (int i = 0; i < actual.Rows; i++)
                 for (int j = 0; j < actual.Cols; j++)
                 {
-                    Assert.AreEqual(actual[i, j], result[i, j], 1e-2);
+                    Assert.AreEqual(actual[i, j], result[i, j], 1e-4);
                 }
         }
 
@@ -50,7 +48,7 @@ namespace CG_Project.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(DimensionException))]
+        [ExpectedException(typeof(EngineExceptions.DimensionException))]
         public void BilinearMisInput()
         {
             Matrix matrix = new Matrix(new float[,] { { 2, 4, 1, 8 },
@@ -78,7 +76,7 @@ namespace CG_Project.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(DimensionException))]
+        [ExpectedException(typeof(EngineExceptions.DimensionException))]
         public void GramMisDim()
         {
             Vector vector1 = new Vector(2, 6, 3);
@@ -105,7 +103,7 @@ namespace CG_Project.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(DimensionException))]
+        [ExpectedException(typeof(EngineExceptions.DimensionException))]
         public void GetCofactorNonSquare()
         {
             Matrix matrix = new Matrix(new float[,] { { 2, 4, 1, 8 },
@@ -145,7 +143,7 @@ namespace CG_Project.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(DimensionException))]
+        [ExpectedException(typeof(EngineExceptions.DimensionException))]
         public void DeterminantNonSquare()
         {
             Matrix matrix = new Matrix(new float[,] { { 2, 4, 1, 8 },
@@ -177,7 +175,7 @@ namespace CG_Project.Tests
 
 
         [TestMethod]
-        [ExpectedException(typeof(DimensionException))]
+        [ExpectedException(typeof(EngineExceptions.DimensionException))]
         public void InverseNonSquare()
         {
             Matrix matrix = new Matrix(new float[,] { { 2, 5, 7 },
@@ -210,7 +208,7 @@ namespace CG_Project.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(DimensionException))]
+        [ExpectedException(typeof(EngineExceptions.DimensionException))]
         public void SumMisDim()
         {
             Matrix matrix1 = new Matrix(new float[,] { { 2, 4, 1, 8 },
@@ -306,7 +304,7 @@ namespace CG_Project.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(DimensionException))]
+        [ExpectedException(typeof(EngineExceptions.DimensionException))]
 
         public void MatrixMultMisInput()
         {
@@ -320,7 +318,7 @@ namespace CG_Project.Tests
 
             Matrix result = matrix1 * matrix2;
 
-            Assert.AreEqual(null, result);
+            // Assert.AreEqual(null, result);
         }
 
         [TestMethod]
@@ -345,18 +343,18 @@ namespace CG_Project.Tests
         {
             for (int j = 0; j < 360; j++)
             {
-                float i = (j % 360) * (float)Math.PI / 180;
+                float i = (j % 360) * (float)System.Math.PI / 180;
 
                 Matrix xRotate = new Matrix(new float[,] { {1, 0,                  0 },
-                                                           {0, (float)Math.Cos(i), -(float)Math.Sin(i) },
-                                                           {0, (float)Math.Sin(i), (float)Math.Cos(i) } });
+                                                           {0, (float)System.Math.Cos(i), -(float)System.Math.Sin(i) },
+                                                           {0, (float)System.Math.Sin(i), (float)System.Math.Cos(i) } });
 
-                Matrix yRotate = new Matrix(new float[,] { {(float)Math.Cos(i), 0, (float)Math.Sin(i) },
+                Matrix yRotate = new Matrix(new float[,] { {(float)System.Math.Cos(i), 0, (float)System.Math.Sin(i) },
                                                            {0,                  1, 0 },
-                                                           {-(float)Math.Sin(i), 0, (float)Math.Cos(i) } });
+                                                           {-(float)System.Math.Sin(i), 0, (float)System.Math.Cos(i) } });
 
-                Matrix zRotate = new Matrix(new float[,] { {(float)Math.Cos(i), -(float)Math.Sin(i), 0 },
-                                                           {(float)Math.Sin(i), (float)Math.Cos(i), 0 },
+                Matrix zRotate = new Matrix(new float[,] { {(float)System.Math.Cos(i), -(float)System.Math.Sin(i), 0 },
+                                                           {(float)System.Math.Sin(i), (float)System.Math.Cos(i), 0 },
                                                            {0,                  0,                  1 } });
 
                 MatrixAssert(xRotate, Matrix.RotationX(j));
@@ -369,13 +367,13 @@ namespace CG_Project.Tests
 
         public void RotationsNDTest1()
         {
-            float angle = (30 % 360) * (float)Math.PI / 180;
+            float angle = (30 % 360) * (float)System.Math.PI / 180;
             Matrix Rotate25 = new Matrix(new float[,] { { 1, 0, 0, 0, 0 },
-                                                        { 0, (float)Math.Cos(angle), 0, 0, -(float)Math.Sin(angle)},
+                                                        { 0, (float)System.Math.Cos(angle), 0, 0, -(float)System.Math.Sin(angle)},
                                                         { 0, 0, 1, 0, 0},
                                                         { 0, 0, 0, 1, 0},
-                                                        { 0, (float)Math.Sin(angle), 0, 0, (float)Math.Cos(angle)} });
-        
+                                                        { 0, (float)System.Math.Sin(angle), 0, 0, (float)System.Math.Cos(angle)} });
+
             Matrix res = Matrix.GeneralRotation(5, 1, 4, 30);
 
             MatrixAssert(Rotate25, res);
@@ -385,12 +383,12 @@ namespace CG_Project.Tests
 
         public void RotationsNDTest2()
         {
-            float angle = (60 % 360) * (float)Math.PI / 180;
-            Matrix Rotate35 = new Matrix(new float[,] { { (float)Math.Cos(angle), 0, 0, 0, (float)Math.Sin(angle), 0},
+            float angle = (60 % 360) * (float)System.Math.PI / 180;
+            Matrix Rotate35 = new Matrix(new float[,] { { (float)System.Math.Cos(angle), 0, 0, 0, (float)System.Math.Sin(angle), 0},
                                                         { 0, 1, 0, 0, 0, 0},
                                                         { 0, 0, 1, 0, 0, 0},
                                                         { 0, 0, 0, 1, 0, 0},
-                                                        { -(float)Math.Sin(angle), 0, 0, 0, (float)Math.Cos(angle), 0},
+                                                        { -(float)System.Math.Sin(angle), 0, 0, 0, (float)System.Math.Cos(angle), 0},
                                                         { 0, 0, 0, 0, 0, 1}});
 
             Matrix res = Matrix.GeneralRotation(6, 0, 4, 60);

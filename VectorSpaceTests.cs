@@ -1,8 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using CG_Project;
+﻿using CGProject.Math;
 
-namespace CG_Project.Tests
+namespace CGProject.Tests
 {
     [TestClass]
     public class VectorSpaceTests
@@ -17,7 +15,7 @@ namespace CG_Project.Tests
 
             float result = VS.ScalarProduct(vector1, vector2);
 
-            Assert.AreEqual(11120 ,result);
+            Assert.AreEqual(11120, result);
         }
 
         [TestMethod]
