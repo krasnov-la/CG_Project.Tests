@@ -1,7 +1,7 @@
 ﻿using CGProject;
 using CGProject.Math;
 
-namespace CGProject.Tests
+namespace CG_Project.Tests.MathTests
 {
     [TestClass]
     public class PointVectorTests
@@ -19,8 +19,8 @@ namespace CGProject.Tests
         [TestMethod]
         public void OrtonormScalar()
         {
-            Vector vector1 = new Vector(1, 6, 9, 4);
-            Vector vector2 = new Vector(8, 5, 0, 1);
+            Vector vector1 = new(1, 6, 9, 4);
+            Vector vector2 = new(8, 5, 0, 1);
 
             float result = vector1 % vector2;
 
@@ -31,10 +31,10 @@ namespace CGProject.Tests
 
         public void VectorProd()
         {
-            Vector vector1 = new Vector(1, 6, 9);
-            Vector vector2 = new Vector(8, 5, 0);
+            Vector vector1 = new(1, 6, 9);
+            Vector vector2 = new(8, 5, 0);
 
-            Vector actual = new Vector(-45, 72, -43);
+            Vector actual = new(-45, 72, -43);
 
             Vector result = vector1 ^ vector2;
 
@@ -45,8 +45,8 @@ namespace CGProject.Tests
         [ExpectedException(typeof(EngineExceptions.DimensionException))]
         public void VectorProdNon3D()
         {
-            Vector vector1 = new Vector(1, 6, 9, 4);
-            Vector vector2 = new Vector(8, 5, 0, 1);
+            Vector vector1 = new(1, 6, 9, 4);
+            Vector vector2 = new(8, 5, 0, 1);
 
             Vector result = vector1 ^ vector2;
 
@@ -57,7 +57,7 @@ namespace CGProject.Tests
 
         public void VectorOrtoLength()
         {
-            Vector vector = new Vector(1, 6, 5, 3, 7, 1);
+            Vector vector = new(1, 6, 5, 3, 7, 1);
 
             float result = vector.Lenght();
 
@@ -65,13 +65,13 @@ namespace CGProject.Tests
         }
 
         [TestMethod]
-        
+
         public void VectorSum()
         {
-            Vector vector1 = new Vector(1, 6, 9, 4);
-            Vector vector2 = new Vector(8, 5, 0, 1);
+            Vector vector1 = new(1, 6, 9, 4);
+            Vector vector2 = new(8, 5, 0, 1);
 
-            Vector actual = new Vector(9, 11, 9, 5);
+            Vector actual = new(9, 11, 9, 5);
 
             Vector result = vector1 + vector2;
 
@@ -82,9 +82,9 @@ namespace CGProject.Tests
 
         public void ScalarMult()
         {
-            Vector vector = new Vector(1, 6, 9, 4);
+            Vector vector = new(1, 6, 9, 4);
 
-            Vector actual = new Vector(3, 18, 27, 12);
+            Vector actual = new(3, 18, 27, 12);
             Vector result = vector * 3;
 
             PointAssert(result, actual);
@@ -94,9 +94,9 @@ namespace CGProject.Tests
 
         public void ScalarNegMult()
         {
-            Vector vector = new Vector(1, -6, 9, -4);
+            Vector vector = new(1, -6, 9, -4);
 
-            Vector actual = new Vector(-3, 18, -27, 12);
+            Vector actual = new(-3, 18, -27, 12);
             Vector result = vector * -3;
 
             PointAssert(result, actual);
@@ -106,7 +106,7 @@ namespace CGProject.Tests
 
         public void PointVectorSum()
         {
-            Vector vector = new Vector(1, 3, 5, 4);
+            Vector vector = new(1, 3, 5, 4);
             Point point = new Vector(8, 1, 5, 4);
 
             Point actual = new Vector(9, 4, 10, 8);

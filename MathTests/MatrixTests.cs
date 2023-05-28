@@ -1,7 +1,7 @@
 ﻿using CGProject;
 using CGProject.Math;
 
-namespace CGProject.Tests
+namespace CG_Project.Tests.MathTests
 {
     [TestClass]
     public class MatrixTests
@@ -21,9 +21,9 @@ namespace CGProject.Tests
         [TestMethod]
         public void BilinearIdentity()
         {
-            Matrix identity = new Matrix(4);
-            Vector vector1 = new Vector(2, 6, 3, 9);
-            Vector vector2 = new Vector(3, 1, 9, 0);
+            Matrix identity = new(4);
+            Vector vector1 = new(2, 6, 3, 9);
+            Vector vector2 = new(3, 1, 9, 0);
 
             float result = identity.BilinearForm(vector1, vector2);
 
@@ -34,13 +34,13 @@ namespace CGProject.Tests
 
         public void Bilinear()
         {
-            Matrix matrix = new Matrix(new float[,] { { 2, 4, 1, 8 },
+            Matrix matrix = new(new float[,] { { 2, 4, 1, 8 },
                                                       { 6, 8, 1, 5 },
                                                       { 3, 1, 7, 0 },
                                                       { 4, 9, 1, 2 } });
 
-            Vector vector1 = new Vector(2, 6, 3, 9);
-            Vector vector2 = new Vector(3, 1, 9, 5);
+            Vector vector1 = new(2, 6, 3, 9);
+            Vector vector2 = new(3, 1, 9, 5);
 
             float result = matrix.BilinearForm(vector1, vector2);
 
@@ -51,12 +51,12 @@ namespace CGProject.Tests
         [ExpectedException(typeof(EngineExceptions.DimensionException))]
         public void BilinearMisInput()
         {
-            Matrix matrix = new Matrix(new float[,] { { 2, 4, 1, 8 },
+            Matrix matrix = new(new float[,] { { 2, 4, 1, 8 },
                                                       { 6, 8, 1, 5 },
                                                       { 3, 1, 7, 0 } });
 
-            Vector vector1 = new Vector(2, 6, 3, 9);
-            Vector vector2 = new Vector(3, 1, 9, 5);
+            Vector vector1 = new(2, 6, 3, 9);
+            Vector vector2 = new(3, 1, 9, 5);
 
             float result = matrix.BilinearForm(vector1, vector2);
 
@@ -66,9 +66,9 @@ namespace CGProject.Tests
         [TestMethod]
         public void Gram()
         {
-            Vector vector1 = new Vector(2, 6, 3);
-            Vector vector2 = new Vector(3, 1, 9);
-            Vector vector3 = new Vector(9, 5, 1);
+            Vector vector1 = new(2, 6, 3);
+            Vector vector2 = new(3, 1, 9);
+            Vector vector3 = new(9, 5, 1);
 
             Matrix result = Matrix.Gram(vector1, vector2, vector3);
 
@@ -79,9 +79,9 @@ namespace CGProject.Tests
         [ExpectedException(typeof(EngineExceptions.DimensionException))]
         public void GramMisDim()
         {
-            Vector vector1 = new Vector(2, 6, 3);
-            Vector vector2 = new Vector(3, 1, 9);
-            Vector vector3 = new Vector(9, 5);
+            Vector vector1 = new(2, 6, 3);
+            Vector vector2 = new(3, 1, 9);
+            Vector vector3 = new(9, 5);
 
             Matrix result = Matrix.Gram(vector1, vector2, vector3);
 
@@ -92,7 +92,7 @@ namespace CGProject.Tests
 
         public void GetCofactor()
         {
-            Matrix matrix = new Matrix(new float[,] { { 2, 4, 1, 8 },
+            Matrix matrix = new(new float[,] { { 2, 4, 1, 8 },
                                                       { 6, 8, 1, 5 },
                                                       { 3, 1, 7, 0 },
                                                       { 4, 9, 1, 2 } });
@@ -106,7 +106,7 @@ namespace CGProject.Tests
         [ExpectedException(typeof(EngineExceptions.DimensionException))]
         public void GetCofactorNonSquare()
         {
-            Matrix matrix = new Matrix(new float[,] { { 2, 4, 1, 8 },
+            Matrix matrix = new(new float[,] { { 2, 4, 1, 8 },
                                                       { 6, 8, 1, 5 },
                                                       { 3, 1, 7, 0 } });
 
@@ -119,7 +119,7 @@ namespace CGProject.Tests
 
         public void Determinant3()
         {
-            Matrix matrix = new Matrix(new float[,] { { 1, 2, 3},
+            Matrix matrix = new(new float[,] { { 1, 2, 3},
                                                       { 0, -1, -2},
                                                       { -3, 4, -4} });
 
@@ -132,7 +132,7 @@ namespace CGProject.Tests
 
         public void Determinant4()
         {
-            Matrix matrix = new Matrix(new float[,] { { 2, 4, 1, 8 },
+            Matrix matrix = new(new float[,] { { 2, 4, 1, 8 },
                                                       { 6, 8, 1, 5 },
                                                       { 3, 1, 7, 0 },
                                                       { 4, 9, 1, 2 } });
@@ -146,7 +146,7 @@ namespace CGProject.Tests
         [ExpectedException(typeof(EngineExceptions.DimensionException))]
         public void DeterminantNonSquare()
         {
-            Matrix matrix = new Matrix(new float[,] { { 2, 4, 1, 8 },
+            Matrix matrix = new(new float[,] { { 2, 4, 1, 8 },
                                                       { 6, 8, 1, 5 },
                                                       { 3, 1, 7, 0 } });
 
@@ -160,13 +160,13 @@ namespace CGProject.Tests
 
         public void Inverse()
         {
-            Matrix matrix = new Matrix(new float[,] { { 2, 5, 7 },
+            Matrix matrix = new(new float[,] { { 2, 5, 7 },
                                                       { 6, 3, 4 },
                                                       { 5, -2, -3} });
 
             Matrix result = matrix.Inverse();
 
-            Matrix actual = new Matrix(new float[,] { { 1, -1, 1 },
+            Matrix actual = new(new float[,] { { 1, -1, 1 },
                                                       { -38, 41, -34 },
                                                       { 27, -29, 24} });
 
@@ -178,7 +178,7 @@ namespace CGProject.Tests
         [ExpectedException(typeof(EngineExceptions.DimensionException))]
         public void InverseNonSquare()
         {
-            Matrix matrix = new Matrix(new float[,] { { 2, 5, 7 },
+            Matrix matrix = new(new float[,] { { 2, 5, 7 },
                                                       { 6, 3, 4 } });
 
             Matrix result = matrix.Inverse();
@@ -190,15 +190,15 @@ namespace CGProject.Tests
 
         public void Sum()
         {
-            Matrix matrix1 = new Matrix(new float[,] { { 2, 4, 1, 8 },
+            Matrix matrix1 = new(new float[,] { { 2, 4, 1, 8 },
                                                       { 6, 8, 1, 5 },
                                                       { 3, 1, 7, 0 } });
 
-            Matrix matrix2 = new Matrix(new float[,] { {1, 2, 4, 3 },
+            Matrix matrix2 = new(new float[,] { {1, 2, 4, 3 },
                                                        {0, 1, 3, 0 },
                                                        { 1, 5, 9, 1} });
 
-            Matrix actual = new Matrix(new float[,] { {3, 6, 5, 11 },
+            Matrix actual = new(new float[,] { {3, 6, 5, 11 },
                                                       {6, 9, 4, 5 },
                                                       {4, 6, 16, 1 } });
 
@@ -211,11 +211,11 @@ namespace CGProject.Tests
         [ExpectedException(typeof(EngineExceptions.DimensionException))]
         public void SumMisDim()
         {
-            Matrix matrix1 = new Matrix(new float[,] { { 2, 4, 1, 8 },
+            Matrix matrix1 = new(new float[,] { { 2, 4, 1, 8 },
                                                       { 6, 8, 1, 5 },
                                                       { 3, 1, 7, 0 } });
 
-            Matrix matrix2 = new Matrix(new float[,] { {1, 2, 4, 3 },
+            Matrix matrix2 = new(new float[,] { {1, 2, 4, 3 },
                                                        {0, 1, 3, 0 }});
 
             Matrix result = matrix1 + matrix2;
@@ -227,11 +227,11 @@ namespace CGProject.Tests
 
         public void ScalarMult()
         {
-            Matrix matrix1 = new Matrix(new float[,] { { 2, 4, 1, 8 },
+            Matrix matrix1 = new(new float[,] { { 2, 4, 1, 8 },
                                                       { 6, 8, 1, 5 },
                                                       { 3, 1, 7, 0 } });
 
-            Matrix actual = new Matrix(new float[,] { {5, 10, 2.5f, 20 },
+            Matrix actual = new(new float[,] { {5, 10, 2.5f, 20 },
                                                       {15, 20, 2.5f, 12.5f },
                                                       {7.5f, 2.5f, 17.5f, 0 } });
 
@@ -243,11 +243,11 @@ namespace CGProject.Tests
         [TestMethod]
         public void ScalarMultNeg()
         {
-            Matrix matrix1 = new Matrix(new float[,] { { -2, 4, -1, 8 },
+            Matrix matrix1 = new(new float[,] { { -2, 4, -1, 8 },
                                                       { 6, -8, 1, -5 },
                                                       { -3, 1, -7, 0 } });
 
-            Matrix actual = new Matrix(new float[,] { {5, -10, 2.5f, -20 },
+            Matrix actual = new(new float[,] { {5, -10, 2.5f, -20 },
                                                       {-15, 20, -2.5f, 12.5f },
                                                       {7.5f, -2.5f, 17.5f, 0 } });
 
@@ -260,16 +260,16 @@ namespace CGProject.Tests
 
         public void MatrixMult()
         {
-            Matrix matrix1 = new Matrix(new float[,] { { 2, 4, 1, 8 },
+            Matrix matrix1 = new(new float[,] { { 2, 4, 1, 8 },
                                                       { 6, 8, 1, 5 },
                                                       { 3, 1, 7, 0 } });
 
-            Matrix matrix2 = new Matrix(new float[,] { {1, 2, 4},
+            Matrix matrix2 = new(new float[,] { {1, 2, 4},
                                                        {0, 1, 3},
                                                        { 1, 5, 9},
                                                        { 3, 0, 1 } });
 
-            Matrix actual = new Matrix(new float[,] { { 27, 13, 37 },
+            Matrix actual = new(new float[,] { { 27, 13, 37 },
                                                       { 22, 25, 62 },
                                                       { 10, 42, 78} });
 
@@ -281,16 +281,16 @@ namespace CGProject.Tests
         [TestMethod]
         public void MatrixMultTranspose()
         {
-            Matrix matrix1 = new Matrix(new float[,] { { 2, 4, 1, 8 },
+            Matrix matrix1 = new(new float[,] { { 2, 4, 1, 8 },
                                                       { 6, 8, 1, 5 },
                                                       { 3, 1, 7, 0 } });
 
-            Matrix matrix2 = new Matrix(new float[,] { {1, 2, 4},
+            Matrix matrix2 = new(new float[,] { {1, 2, 4},
                                                        {0, 1, 3},
                                                        { 1, 5, 9},
                                                        { 3, 0, 1 } });
 
-            Matrix actual = new Matrix(new float[,] { { 27, 13, 37 },
+            Matrix actual = new(new float[,] { { 27, 13, 37 },
                                                       { 22, 25, 62 },
                                                       { 10, 42, 78} });
 
@@ -308,11 +308,11 @@ namespace CGProject.Tests
 
         public void MatrixMultMisInput()
         {
-            Matrix matrix1 = new Matrix(new float[,] { { 2, 4, 1, 8 },
+            Matrix matrix1 = new(new float[,] { { 2, 4, 1, 8 },
                                                       { 6, 8, 1, 5 },
                                                       { 3, 1, 7, 0 } });
 
-            Matrix matrix2 = new Matrix(new float[,] { {1, 2, 4},
+            Matrix matrix2 = new(new float[,] { {1, 2, 4},
                                                        {0, 1, 3},
                                                        { 1, 5, 9} });
 
@@ -324,14 +324,14 @@ namespace CGProject.Tests
         [TestMethod]
         public void VectorToMatrix()
         {
-            Vector vector = new Vector(4.5f, 2, 1, 9);
+            Vector vector = new(4.5f, 2, 1, 9);
 
             Matrix vectorMatrix = (Matrix)vector;
             vector.Transpose();
             Matrix TVectorMatrix = (Matrix)vector;
 
-            Matrix actualVectorMatrix = new Matrix(new float[,] { { 4.5f }, { 2 }, { 1 }, { 9 } });
-            Matrix actualTVectorMatrix = new Matrix(new float[,] { { 4.5f, 2, 1, 9 } });
+            Matrix actualVectorMatrix = new(new float[,] { { 4.5f }, { 2 }, { 1 }, { 9 } });
+            Matrix actualTVectorMatrix = new(new float[,] { { 4.5f, 2, 1, 9 } });
 
             MatrixAssert(actualVectorMatrix, vectorMatrix);
             MatrixAssert(actualTVectorMatrix, TVectorMatrix);
@@ -343,18 +343,18 @@ namespace CGProject.Tests
         {
             for (int j = 0; j < 360; j++)
             {
-                float i = (j % 360) * (float)System.Math.PI / 180;
+                float i = j % 360 * (float)Math.PI / 180;
 
-                Matrix xRotate = new Matrix(new float[,] { {1, 0,                  0 },
-                                                           {0, (float)System.Math.Cos(i), -(float)System.Math.Sin(i) },
-                                                           {0, (float)System.Math.Sin(i), (float)System.Math.Cos(i) } });
+                Matrix xRotate = new(new float[,] { {1, 0,                  0 },
+                                                           {0, (float)Math.Cos(i), -(float)Math.Sin(i) },
+                                                           {0, (float)Math.Sin(i), (float)Math.Cos(i) } });
 
-                Matrix yRotate = new Matrix(new float[,] { {(float)System.Math.Cos(i), 0, (float)System.Math.Sin(i) },
+                Matrix yRotate = new(new float[,] { {(float)Math.Cos(i), 0, (float)Math.Sin(i) },
                                                            {0,                  1, 0 },
-                                                           {-(float)System.Math.Sin(i), 0, (float)System.Math.Cos(i) } });
+                                                           {-(float)Math.Sin(i), 0, (float)Math.Cos(i) } });
 
-                Matrix zRotate = new Matrix(new float[,] { {(float)System.Math.Cos(i), -(float)System.Math.Sin(i), 0 },
-                                                           {(float)System.Math.Sin(i), (float)System.Math.Cos(i), 0 },
+                Matrix zRotate = new(new float[,] { {(float)Math.Cos(i), -(float)Math.Sin(i), 0 },
+                                                           {(float)Math.Sin(i), (float)Math.Cos(i), 0 },
                                                            {0,                  0,                  1 } });
 
                 MatrixAssert(xRotate, Matrix.RotationX(j));
@@ -367,12 +367,12 @@ namespace CGProject.Tests
 
         public void RotationsNDTest1()
         {
-            float angle = (30 % 360) * (float)System.Math.PI / 180;
-            Matrix Rotate25 = new Matrix(new float[,] { { 1, 0, 0, 0, 0 },
-                                                        { 0, (float)System.Math.Cos(angle), 0, 0, -(float)System.Math.Sin(angle)},
+            float angle = 30 % 360 * (float)Math.PI / 180;
+            Matrix Rotate25 = new(new float[,] { { 1, 0, 0, 0, 0 },
+                                                        { 0, (float)Math.Cos(angle), 0, 0, -(float)Math.Sin(angle)},
                                                         { 0, 0, 1, 0, 0},
                                                         { 0, 0, 0, 1, 0},
-                                                        { 0, (float)System.Math.Sin(angle), 0, 0, (float)System.Math.Cos(angle)} });
+                                                        { 0, (float)Math.Sin(angle), 0, 0, (float)Math.Cos(angle)} });
 
             Matrix res = Matrix.GeneralRotation(5, 1, 4, 30);
 
@@ -383,12 +383,12 @@ namespace CGProject.Tests
 
         public void RotationsNDTest2()
         {
-            float angle = (60 % 360) * (float)System.Math.PI / 180;
-            Matrix Rotate35 = new Matrix(new float[,] { { (float)System.Math.Cos(angle), 0, 0, 0, (float)System.Math.Sin(angle), 0},
+            float angle = 60 % 360 * (float)Math.PI / 180;
+            Matrix Rotate35 = new(new float[,] { { (float)Math.Cos(angle), 0, 0, 0, (float)Math.Sin(angle), 0},
                                                         { 0, 1, 0, 0, 0, 0},
                                                         { 0, 0, 1, 0, 0, 0},
                                                         { 0, 0, 0, 1, 0, 0},
-                                                        { -(float)System.Math.Sin(angle), 0, 0, 0, (float)System.Math.Cos(angle), 0},
+                                                        { -(float)Math.Sin(angle), 0, 0, 0, (float)Math.Cos(angle), 0},
                                                         { 0, 0, 0, 0, 0, 1}});
 
             Matrix res = Matrix.GeneralRotation(6, 0, 4, 60);
