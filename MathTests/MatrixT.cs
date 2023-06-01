@@ -4,9 +4,9 @@ using CGProject.Math;
 namespace CG_Project.Tests.MathTests
 {
     [TestClass]
-    public class MatrixTests
+    public class MatrixT
     {
-        void MatrixAssert(Matrix actual, Matrix result)
+        public static void TableAssert(DataTable actual, DataTable result)
         {
             Assert.AreEqual(actual.Rows, result.Rows);
             Assert.AreEqual(actual.Cols, result.Cols);
@@ -170,7 +170,7 @@ namespace CG_Project.Tests.MathTests
                                                       { -38, 41, -34 },
                                                       { 27, -29, 24} });
 
-            MatrixAssert(actual, result);
+            TableAssert(actual, result);
         }
 
 
@@ -204,7 +204,7 @@ namespace CG_Project.Tests.MathTests
 
             Matrix result = matrix1 + matrix2;
 
-            MatrixAssert(actual, result);
+            TableAssert(actual, result);
         }
 
         [TestMethod]
@@ -237,7 +237,7 @@ namespace CG_Project.Tests.MathTests
 
             Matrix result = matrix1 * 2.5f;
 
-            MatrixAssert(actual, result);
+            TableAssert(actual, result);
         }
 
         [TestMethod]
@@ -253,7 +253,7 @@ namespace CG_Project.Tests.MathTests
 
             Matrix result = matrix1 * -2.5f;
 
-            MatrixAssert(actual, result);
+            TableAssert(actual, result);
         }
 
         [TestMethod]
@@ -275,7 +275,7 @@ namespace CG_Project.Tests.MathTests
 
             Matrix result = matrix1 * matrix2;
 
-            MatrixAssert(actual, result);
+            TableAssert(actual, result);
         }
 
         [TestMethod]
@@ -300,7 +300,7 @@ namespace CG_Project.Tests.MathTests
 
             Matrix result = matrix2 * matrix1;
 
-            MatrixAssert(actual, result);
+            TableAssert(actual, result);
         }
 
         [TestMethod]
@@ -333,8 +333,8 @@ namespace CG_Project.Tests.MathTests
             Matrix actualVectorMatrix = new(new float[,] { { 4.5f }, { 2 }, { 1 }, { 9 } });
             Matrix actualTVectorMatrix = new(new float[,] { { 4.5f, 2, 1, 9 } });
 
-            MatrixAssert(actualVectorMatrix, vectorMatrix);
-            MatrixAssert(actualTVectorMatrix, TVectorMatrix);
+            TableAssert(actualVectorMatrix, vectorMatrix);
+            TableAssert(actualTVectorMatrix, TVectorMatrix);
         }
 
         [TestMethod]
@@ -357,9 +357,9 @@ namespace CG_Project.Tests.MathTests
                                                            {(float)Math.Sin(i), (float)Math.Cos(i), 0 },
                                                            {0,                  0,                  1 } });
 
-                MatrixAssert(xRotate, Matrix.RotationX(j));
-                MatrixAssert(yRotate, Matrix.RotationY(j));
-                MatrixAssert(zRotate, Matrix.RotationZ(j));
+                TableAssert(xRotate, Matrix.RotationX(j));
+                TableAssert(yRotate, Matrix.RotationY(j));
+                TableAssert(zRotate, Matrix.RotationZ(j));
             }
         }
 
@@ -376,7 +376,7 @@ namespace CG_Project.Tests.MathTests
 
             Matrix res = Matrix.GeneralRotation(5, 1, 4, 30);
 
-            MatrixAssert(Rotate25, res);
+            TableAssert(Rotate25, res);
         }
 
         [TestMethod]
@@ -393,7 +393,7 @@ namespace CG_Project.Tests.MathTests
 
             Matrix res = Matrix.GeneralRotation(6, 0, 4, 60);
 
-            MatrixAssert(Rotate35, res);
+            TableAssert(Rotate35, res);
         }
     }
 }

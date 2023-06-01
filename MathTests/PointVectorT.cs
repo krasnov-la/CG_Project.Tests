@@ -4,7 +4,7 @@ using CGProject.Math;
 namespace CG_Project.Tests.MathTests
 {
     [TestClass]
-    public class PointVectorTests
+    public class PointVectorT
     {
         void PointAssert(Point actual, Point result)
         {
