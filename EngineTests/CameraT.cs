@@ -19,7 +19,7 @@ namespace CG_Project.Tests.EngineTests
                        new VectorSpace(new Vector(1, 0, 0),
                                        new Vector(0, 1, 0),
                                        new Vector(0, 0, 1))),
-                       new EntityList());
+                       new ObjectList());
         }
 
         [TestMethod]
@@ -28,9 +28,9 @@ namespace CG_Project.Tests.EngineTests
             GameCamera cam = new(gameInit(),
                                  new Point(0, 0, 0),
                                  new Vector(1, 0, 0),
-                                 120f, 20f);
+                                 new Tuple<float, float>(120f, 80f), 20f);
 
-            MatrixT.TableAssert(new Point(0, 0, 0), cam[EntityProp.Position]);
+            MatrixT.TableAssert(new Point(0, 0, 0), cam.Position);
         }
 
         [TestMethod]
@@ -39,9 +39,9 @@ namespace CG_Project.Tests.EngineTests
             GameCamera cam = new(gameInit(),
                                  new Point(0, 0, 0),
                                  new Vector(1, 0, 0),
-                                 120f, 20f);
+                                 new Tuple<float, float>(120f, 80f), 20f);
 
-            MatrixT.TableAssert(new Vector(1, 0, 0), cam[EntityProp.Direction]);
+            MatrixT.TableAssert(new Vector(1, 0, 0), cam.Direction);
         }
 
         [TestMethod]
@@ -50,9 +50,9 @@ namespace CG_Project.Tests.EngineTests
             GameCamera cam = new(gameInit(),
                                  new Point(0, 0, 0),
                                  new Vector(1, 0, 0),
-                                 120f, 20f);
+                                 new Tuple<float, float>(120f, 80f), 20f);
 
-            Assert.AreEqual(120f, cam[EntityProp.FoV]);
+            Assert.AreEqual(new Tuple<float, float>(120f, 80f), cam.FoV);
         }
 
         [TestMethod]
@@ -61,9 +61,9 @@ namespace CG_Project.Tests.EngineTests
             GameCamera cam = new(gameInit(),
                                  new Point(0, 0, 0),
                                  new Vector(1, 0, 0),
-                                 120f, 20f);
+                                 new Tuple<float, float>(120f, 80f), 20f);
 
-            Assert.AreEqual(20f, cam[EntityProp.DrawDist]);
+            Assert.AreEqual(20f, cam.DrawDist);
         }
     }
 }

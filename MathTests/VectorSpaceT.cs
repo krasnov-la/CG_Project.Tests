@@ -67,9 +67,9 @@ namespace CG_Project.Tests.MathTests
         {
             Point point = new(1, 3, 7);
 
-            Vector result = VS.AsVector(point);
+            Vector result = VS.AsBaseVector(point);
             point.Transpose();
-            Vector Tresult = VS.AsVector(point);
+            Vector Tresult = VS.AsBaseVector(point);
 
             Vector actual = new(18, 39, 70);
 
