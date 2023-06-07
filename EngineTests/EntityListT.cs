@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 namespace CG_Project.Tests.EngineTests
 {
     [TestClass]
-    public class EntityListT
+    public class ObjectListT
     {
-        EntityList entL = new();
-        Entity[] testSet = new Entity[5];
+        ObjectList entL = new();
+        GameObject[] testSet = new GameObject[5];
 
         [TestInitialize]
         public void TestInit()
@@ -21,15 +21,21 @@ namespace CG_Project.Tests.EngineTests
             for (int i = 0; i < 5; i++)
             {
                 entL = new();
-                Entity ent = new HyperPlane(new Game(new CoordinateSystem(new Point(0, 0, 0),
+                GameObject ent = new HyperPlane(new Game(new CoordinateSystem(new Point(0, 0, 0),
                                                                           new VectorSpace(new Vector(1, 0, 0),
                                                                                           new Vector(0, 1, 0),
-                                                                                          new Vector(0, 0, 1)))));
-
-                ent[EntityProp.Direction] = new Vector(i + 1, i + 2, i + 3);
+                                                                                          new Vector(0, 0, 1))),
+                                                     new ObjectList()),
+                                            new Point(i + 1, i + 2, i + 3),
+                                            new Vector(1, 0, 0));
 
                 testSet[i] = ent;
             }
+        }
+
+        void Move(GameObject obj)
+        {
+            obj.Move(new Vector(1, 1, 1));
         }
 
         void Adder(int num)
@@ -39,11 +45,6 @@ namespace CG_Project.Tests.EngineTests
                 entL.Add(testSet[i]);
             }
         }
-
-        /*void Inverse(Entity ent)
-        {
-            ent[EntityProp.Direction] = -1 * (Vector)ent[EntityProp.Direction];
-        }*/
 
         [TestMethod]
         public void Add1()
@@ -181,7 +182,7 @@ namespace CG_Project.Tests.EngineTests
         public void Exec5()
         {
             Adder(5);
-            entL.Exec(Inverse);
+            entL.Exec();
             MatrixT.TableAssert(new Vector(-5, -6, -7), entL[testSet[4].Identifier][EntityProp.Direction]);
         }*/
 
